@@ -65,9 +65,17 @@ function parseBlock(data, langs) {
 }
 
 function onBlockParsed(langs, hash, data) {
-    for (let i = 0, l = data.length; i < l; i++){
+    if (Array.isArray(data)) {
+        setToMap(data, langs, hash, data);
+    } else {
+        setToMap(langs, langs, hash, data);
+    }
+}
+
+function setToMap(list, langs, hash, data) {
+    for (let i = 0, l = list.length; i < l; i++){
         const lang = langs[i];
-        const item = data[i];
+        const item = Array.isArray(data) ? data[i] : data;
         const langMap = translateMap[lang];
         if (langMap[hash]) {
             logError('trying to register already defined HASH lang!', hash);

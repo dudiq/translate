@@ -1,6 +1,10 @@
 export default {
     langs: ['en', 'ru'],
     data: {
+        withoutTranslates: {
+            block1: 'block1',
+            block2: 'block2',
+        },
         exTheme: { // default
             dark: [
                 'Dark',

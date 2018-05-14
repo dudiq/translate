@@ -98,7 +98,7 @@ function translate(lang, key, data) {
     }
     const block = translateMap[lang];
     const field = block && block[key];
-    if (field) {
+    if (field !== undefined) {
         if (typeof field === 'object') {
             ret = plurals(lang, field, data);
         } else {

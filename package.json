@@ -1,6 +1,6 @@
 {
   "name": "jr-translate",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "simple translate module with plurals",
   "main": "translate.js",
   "scripts": {

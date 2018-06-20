@@ -13,6 +13,8 @@ function getNumByLang(lang, number) {
     }
     if (map[lang] && !isNaN(number - 0)) {
         ret = map[lang].format(number);
+    } else {
+        ret = number + '';
     }
     return ret;
 }

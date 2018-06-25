@@ -9,6 +9,11 @@ beforeAll(() => {
 test('get using lang list', () => {
     translate.setLang('en');
     expect(translate.getLang() + '').toBe('en');
+    translate.setLang('es');
+    expect(translate.getLang() + '').toBe('es');
+    expect(translate('exTheme.dark')).toBe('Dark');
+
+    // set lang for other cases
     translate.setLang('ru');
     expect(translate.getLang() + '').toBe('ru');
 });

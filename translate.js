@@ -10,8 +10,8 @@ function logError() {
         console.error.apply(console, list);
     }
 }
-
-let currentLang = (navigator && (navigator.language || navigator.userLanguage) || '').substring(0, 2).toLowerCase() || 'en';
+const DEF_LNG = 'en';
+let currentLang = (navigator && (navigator.language || navigator.userLanguage) || '').substring(0, 2).toLowerCase() || DEF_LNG;
 
 const translateMap = {};
 const defSeparator = '.';
@@ -85,6 +85,16 @@ function setToMap(list, langs, hash, data) {
     }
 }
 
+function getData(lang, field, data) {
+    let ret = '';
+    if (typeof field === 'object') {
+        ret = plurals(lang, field, data);
+    } else {
+        ret = applyData(field, data);
+    }
+    return ret;
+}
+
 function translate(lang, key, data) {
     let ret = '';
     if (arguments.length == 1) {
@@ -99,15 +109,18 @@ function translate(lang, key, data) {
     const block = translateMap[lang];
     const field = block && block[key];
     if (field !== undefined) {
-        if (typeof field === 'object') {
-            ret = plurals(lang, field, data);
-        } else {
-            ret = applyData(field, data);
-        }
+        ret = getData(lang, field, data);
     } else {
-        ret = key;
+        const block = translateMap[DEF_LNG];
+        const field = block && block[key];
+        if (field !== undefined) {
+            ret = getData(lang, field, data);
+        } else {
+            ret = key;
+        }
         logError(`not defined block [${key}] in ${lang} lang`);
     }
+
     return ret;
 }
 

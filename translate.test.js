@@ -1,9 +1,13 @@
 import translate from './translate';
 import example from './example.langs';
+import example2 from './example.test.langs';
 
 beforeAll(() => {
-    translate.addBlock(example);
+    translate.setLangs(['en', 'ru']);
     translate.setLang('ru');
+
+    translate.addBlock(example);
+    translate.addBlock(example2);
 });
 
 test('get using lang list', () => {
@@ -85,4 +89,20 @@ test('variable using', () => {
             here: 'значение',
         }),
     })).toBe('переменная вторая значение');
+});
+
+test('.setLangs()', () => {
+    translate.setLang('en');
+    expect(translate.getLang() + '').toBe('en');
+    expect(translate('setLangsTest.dark')).toBe('Dark');
+
+    translate.setLang('es');
+    expect(translate.getLang() + '').toBe('es');
+    expect(translate('setLangsTest.dark')).toBe('Dark');
+
+    // set lang for other cases
+    translate.setLang('ru');
+    expect(translate.getLang() + '').toBe('ru');
+    expect(translate('setLangsTest.dark')).toBe('Темная');
+
 });

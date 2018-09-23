@@ -10,9 +10,11 @@ function logError() {
         console.error.apply(console, list);
     }
 }
+const n = navigator;
 const DEF_LNG = 'en';
-let currentLang = (navigator && (navigator.language || navigator.userLanguage) || '').substring(0, 2).toLowerCase() || DEF_LNG;
+let currentLang = (n && (n.language || n.userLanguage) || '').substring(0, 2).toLowerCase() || DEF_LNG;
 
+let setupLangs = [DEF_LNG];
 const translateMap = {};
 const defSeparator = '.';
 
@@ -73,8 +75,9 @@ function onBlockParsed(langs, hash, data) {
 }
 
 function setToMap(list, langs, hash, data) {
+    const langList = langs ? langs : setupLangs;
     for (let i = 0, l = list.length; i < l; i++){
-        const lang = langs[i];
+        const lang = langList[i] || DEF_LNG;
         const item = Array.isArray(data) ? data[i] : data;
         const langMap = translateMap[lang];
         if (langMap[hash]) {
@@ -133,10 +136,13 @@ function translate(lang, key, data) {
         plurals.addPlural(plu);
     },
     addBlock: function (block) {
-        parseBlock(block.data, block.langs);
+        parseBlock(block.data, block.langs || setupLangs);
     },
     getLang: function () {
         return currentLang;
+    },
+    setLangs: function(list) {
+        setupLangs = list;
     },
     setLang: function (lang) {
         currentLang = lang;

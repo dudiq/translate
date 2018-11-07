@@ -1,4 +1,4 @@
-import translate from './translate';
+import translate from '../src/translate';
 import example from './example.langs';
 import example2 from './example.test.langs';
 

@@ -1,22 +1,19 @@
 {
   "name": "jr-translate",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "simple translate module with plurals",
-  "main": "translate.js",
+  "main": "build/translate.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test NODE_ICU_DATA=node_modules/node-icu jest"
+    "test": "cross-env NODE_ENV=test NODE_ICU_DATA=node_modules/node-icu jest",
+    "build": "babel src -d build"
   },
   "devDependencies": {
-    "babel-core": "6.26.3",
-    "babel-jest": "^22.4.4",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-plugin-dynamic-import-node": "^1.2.0",
-    "cross-env": "^5.1.5",
-    "jest": "^22.4.4",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
+    "babel-preset-env": "^1.7.0",
+    "cross-env": "^5.2.0",
+    "jest": "^23.6.0",
     "node-icu": "^1.1.0"
   },
   "repository": {

@@ -1,0 +1,27 @@
+.git
+.husky
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+.tern-port
+.editorconfig
+.gitattributes
+.gitignore
+.babelrc.js
+.eslintrc.js
+.eslintignore
+.prettierrc.js
+jest.config.ts
+tests
+rollup.config.js
+tsconfig.json
+
+# root files
+.DS_Store
+yarn.lock
+package-lock.json

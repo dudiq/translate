@@ -4,6 +4,7 @@
 
 # build files
 build
+dist
 
 # nodejs modules
 node_modules
@@ -14,3 +15,5 @@ npm-debug.log
 .idea
 .idea/**
 *.iml
+
+.DS_Store

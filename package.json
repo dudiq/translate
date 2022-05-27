@@ -1,24 +1,54 @@
 {
   "name": "jr-translate",
-  "version": "1.0.11",
+  "version": "2.0.0",
   "description": "simple translate module with plurals",
-  "main": "build/translate.js",
+  "main": "dist/translate.cjs.js",
+  "module": "dist/translate.es.js",
+  "browser": "dist/translate.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test NODE_ICU_DATA=node_modules/full-icu jest",
-    "build": "babel src -d build"
+    "test": "jest",
+    "build": "rimraf dist && rollup -c",
+    "lint": "eslint --fix 'src/**/*.ts'",
+    "prepare": "husky install",
+    "lint-staged": "lint-staged"
   },
   "files": [
     "src",
     "build"
   ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --fix",
+    "*.{js,jsx,ts,tsx,json,gql,html,md,yml}": "prettier --write"
+  },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.6",
-    "@babel/preset-env": "^7.9.6",
-    "@babel/runtime": "^7.9.6",
-    "cross-env": "^7.0.2",
-    "jest": "^26.0.1",
-    "full-icu": "^1.3.1"
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/runtime": "^7.18.3",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-typescript": "^8.3.2",
+    "@types/jest": "^27.5.1",
+    "@typescript-eslint/eslint-plugin": "^5.26.0",
+    "@typescript-eslint/parser": "^5.26.0",
+    "eslint": "^8.16.0",
+    "eslint-plugin-jest": "^26.2.2",
+    "husky": "^8.0.1",
+    "jest": "^28.1.0",
+    "lint-staged": "^12.4.2",
+    "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.74.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "ts-jest": "^28.0.3",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.2"
   },
   "repository": {
     "type": "git",

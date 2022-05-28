@@ -1,6 +1,6 @@
 {
   "name": "jr-translate",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "simple translate module with plurals",
   "main": "dist/translate.cjs.js",
   "module": "dist/translate.es.js",
@@ -16,7 +16,7 @@
   },
   "files": [
     "src",
-    "build"
+    "dist"
   ],
   "husky": {
     "hooks": {

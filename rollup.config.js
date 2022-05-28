@@ -3,6 +3,7 @@ import pluginTypescript from '@rollup/plugin-typescript'
 import pluginCommonjs from '@rollup/plugin-commonjs'
 import pluginNodeResolve from '@rollup/plugin-node-resolve'
 import { babel } from '@rollup/plugin-babel'
+import dts from 'rollup-plugin-dts'
 import * as path from 'path'
 import pkg from './package.json'
 
@@ -109,5 +110,12 @@ export default [
         browser: false,
       }),
     ],
+  },
+
+  {
+    // path to your declaration files root
+    input: './dist/dts/src/index.d.ts',
+    output: [{ file: 'dist/translate.d.ts', format: 'es' }],
+    plugins: [dts()],
   },
 ]

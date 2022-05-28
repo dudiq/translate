@@ -5,12 +5,14 @@
   "main": "dist/translate.cjs.js",
   "module": "dist/translate.es.js",
   "browser": "dist/translate.js",
+  "types": "dist/translate.d.ts",
   "scripts": {
     "test": "jest",
-    "build": "rimraf dist && rollup -c",
+    "build": "rimraf dist && tsc && rollup -c && rimraf dist/dts",
     "lint": "eslint --fix 'src/**/*.ts'",
     "prepare": "husky install",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "tsc": "tsc"
   },
   "files": [
     "src",
@@ -45,6 +47,7 @@
     "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.74.1",
+    "rollup-plugin-dts": "^4.2.2",
     "rollup-plugin-terser": "^7.0.2",
     "ts-jest": "^28.0.3",
     "tslib": "^2.4.0",
